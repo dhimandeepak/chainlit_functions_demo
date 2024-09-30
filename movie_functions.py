@@ -4,6 +4,7 @@ from serpapi import GoogleSearch
 import os
 
 def get_now_playing_movies():
+    print("get_now_playing_movies")
     url = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1"
     headers = {
         "Authorization": f"Bearer {os.getenv('TMDB_API_ACCESS_TOKEN')}"
@@ -34,8 +35,10 @@ def get_now_playing_movies():
         )
 
     return formatted_movies
+    
 
 def get_showtimes(title, location):
+    print("calling get showtimes - priya")
     params = {
         "api_key": os.getenv('SERP_API_KEY'),
         "engine": "google",
@@ -48,7 +51,7 @@ def get_showtimes(title, location):
 
     search = GoogleSearch(params)
     results = search.get_dict()
-
+    print (results)
     if 'showtimes' not in results:
         return f"No showtimes found for {title} in {location}."
 
